@@ -1,9 +1,9 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+// const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const WebpackPwaManifest = require("webpack-pwa-manifest");
 const path = require("path");
 const { InjectManifest } = require("workbox-webpack-plugin");
-const { GenerateSW } = require("workbox-webpack-plugin");
+// const { GenerateSW } = require("workbox-webpack-plugin");
 
 module.exports = () => {
   return {
@@ -19,21 +19,25 @@ module.exports = () => {
     plugins: [
       new HtmlWebpackPlugin({
         template: "./index.html",
-        title: "Webpack Plugin",
+        title: "JATE",
       }),
-      new MiniCssExtractPlugin(),
+      // new MiniCssExtractPlugin(),
       new InjectManifest({
         swSrc: "./src-sw.js",
-        swDest: "./dist/sw.js",
+        swDest: "src-sw.js",
       }),
-      new GenerateSW(),
+      // new GenerateSW(),
       new WebpackPwaManifest({
         name: "JATE TextEditor",
+        short_name: "JATE",
+        start_url: "/",
+        publicPath: "/",
         background_color: "#ffffff",
         icons: [
           {
-            src: "src/images/logo.png",
-            sizes: [96, 128, 192, 512],
+            src: path.resolve("src/images/icon.png"),
+            sizes: [96, 128, 192, 256, 384, 512],
+            destination: path.join("assets", "icons"),
           },
         ],
       }),
@@ -43,11 +47,7 @@ module.exports = () => {
       rules: [
         {
           test: /\.css$/i,
-          use: [MiniCssExtractPlugin.loader, "css-loader"],
-        },
-        {
-          test: /\.(png|svg|jpg|jpeg|gif)$/i,
-          type: "asset/resource",
+          use: ["style-loader", "css-loader"],
         },
         {
           test: /\.m?js$/,
@@ -56,6 +56,10 @@ module.exports = () => {
             loader: "babel-loader",
             options: {
               presets: ["@babel/preset-env"],
+              plugins: [
+                "@babel/plugin-proposal-object-rest-spread",
+                "@babel/transform-runtime",
+              ],
             },
           },
         },
