@@ -33,6 +33,8 @@ module.exports = () => {
         start_url: "/",
         publicPath: "/",
         background_color: "#ffffff",
+
+        fingerprints: false,
         icons: [
           {
             src: path.resolve("src/images/icon.png"),
