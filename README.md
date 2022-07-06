@@ -18,6 +18,8 @@ This application is PWA TextEditor that allows users to wrtie-up some text and t
 
 Here is the link to my deployed TextEditor PWA:
 
+- https://fathomless-sands-33165.herokuapp.com/
+
 ## Installation:
 
 To install this application you can either follow the deployed link to the application and download it as an app on your computer through the "install" button in the top-left corner. If you want to check out the code and download it that way, just clone the repo from my GitHub and then open the repository in VS Code or a similar platform. Once in there, open the comand-line and run "npm run start" and it should build a dist/ folder and turn the srver on so that the application is running. Hope you enjoy!
